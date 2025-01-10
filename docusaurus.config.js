@@ -8,9 +8,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Nostra Spaces Engine',
+  title: 'Spaces Engine',
   favicon: 'img/favicon.ico',
-  tagline:'powered by spaces',
+  tagline:'',
 
   // Set the production url of your site here
   url: 'https://gamespaces.xyz',
@@ -21,7 +21,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Spaces-Ads', // Usually your GitHub org/user name.
-  projectName: 'Nostra-Spaces-Docs', // Usually your repo name.'
+  projectName: 'Spaces-Docs', // Usually your repo name.'
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -87,13 +87,13 @@ const config = {
           },
         ],
       },
-      // footer: {
-      //   style: 'dark',
-      //   links: [
-      //   ],
-      //   // copyright: `Copyright © ${new Date().getFullYear()} Aigility Technologies Pvt Ltd. Built with Docusaurus.`,
-      //   // copyright: `Powered by spaces`,
-      // },
+      footer: {
+        style: 'dark',
+        links: [
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} Aigility Technologies Pvt Ltd. Built with Docusaurus.`,
+        // copyright: `Powered by spaces`,
+      },
       colorMode: {
         defaultMode: 'dark', // Set dark mode as default
         // Other options can be added here
