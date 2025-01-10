@@ -16,11 +16,11 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <button  style={{backgroundColor:"transparent", borderWidth:"0px"}}onClick={()=>{
+        {/* <button  style={{backgroundColor:"transparent", borderWidth:"0px"}}onClick={()=>{
           window.open("https://gamespaces.xyz")
         }}>
         <p className="hero__subtitle" style={{color:'black', fontFamily:'Black Ops One'}}>{siteConfig.tagline}</p>
-        </button>
+        </button> */}
         <div className={styles.buttons} style={{marginTop:'30px'}}>
           <Link
             className="button button--secondary button--lg"
