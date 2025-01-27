@@ -13,7 +13,7 @@ Interactions can vary from game to game. Here are some examples:
 4. Bursting candies in Candy Crush
 etc..
 
-Essentially, interactions can include any form of in-game action or achievement. By default, all your assets can be used to update interactions. For certain interactions that cannot be linked to any asset, **```REWARD_TRACKERS```** assets are created solely for tracking purposes.
+Essentially, interactions can include any form of in-game action or achievement. By default, all your assets can be used to update interactions. For certain interactions that cannot be linked to any asset, **```REWARD_TRACKER```** assets are created solely for tracking purposes.
 
 To update interactions and unlock brand rewards during a campaign, you need to call the method 
 **```spacesEngine.AssetUpdateInteraction()```** appropriately in your game code.

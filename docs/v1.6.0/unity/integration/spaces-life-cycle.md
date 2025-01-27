@@ -56,7 +56,7 @@ Let's start with the very first scene of your game, the Loading Scene or Splash 
     }
     ```
 
-7. **```await SpacesController.Load();```** will also trigger a Loading Screen from **```SpacesSplashScreen```**. If you want to disable it, You can just make **```SpacesController.SpacesSplashLoadingScreenOn();```** and **```SpacesController.SpacesSplashLoadingScreenOff();```** as empty functions by commenting the function logic in **```SpacesController.cs```** located in **```\Spaces\Scripts```**
+7. **```await SpacesController.Load();```** will also trigger a Loading Screen from **```SpacesSplashScreen```**. If you want to disable it, You can just make **```SpacesController.SpacesSplashLoadingScreenOn();```** and **```SpacesController.SpacesSplashLoadingScreenOff();```** as empty functions by commenting its function logic in **```SpacesController.cs```** located in **```\Spaces\Scripts```**
 
     ![alt-textx](@site/static/lifeCycle-Load7.png)
 
@@ -89,7 +89,7 @@ Let's start with the very first scene of your game, the Loading Scene or Splash 
 
 
 ### If Your Game Does Not Have a Loading Scene
-A basic loading scene is provided. Add it to your buil settings hierarchy above your game scene. You can find it at **`./Assets/Spaces/UI/SpacesSplashScene.Unity`**.
+A basic loading scene is provided. Add it to your build settings hierarchy above your game scene. You can find it at **`./Assets/Spaces/UI/SpacesSplashScene.Unity`**.
 
 ![alt-textx](@site/static/lifeCycle-Load3.png)
 ![alt-textx](@site/static/lifeCycle-Load4.png)
@@ -112,7 +112,7 @@ Feel free to modify the loading screen UI as needed. By default, the scene inclu
 Typically, your game will show a "Game Over" screen at some point in the game cycle. Just before this screen appears, you must trigger **`SpacesController.UpdateGameSession();`** This will display the Spaces UI if there is an active campaign.
 
 1. Call the **`SpacesController.UpdateGameSession();`** function in the appropriate location, just before the "Game Over" screen is displayed.
-2. Convert the parent function where you include **`SpacesController.UpdateGameSession();`** into an **`async Task`** function. Converting parent into async is suggested as a best practise but is not mandatory.
+2. Convert the parent function where you include **`SpacesController.UpdateGameSession();`** into an **`async Task`** function. Converting parent into async is suggested as a best practise but is not mandatory here.
 
     ```csharp
     using System.Threading.Tasks; // Add this library to support async functions
@@ -125,7 +125,7 @@ Typically, your game will show a "Game Over" screen at some point in the game cy
     }
     ```
 
-During an active campaign, the Spaces UI will be displayed once **```await SpacesController.UpdateGameSession();```**. This UI allows brands to distribute rewards for in-game task completion, showcase call-to-action buttons, display a brand banner or video, and more. This UI is customized to align with your game's UI/UX. 
+During an active campaign, the Spaces UI will be displayed once **```await SpacesController.UpdateGameSession();```** is triggered. This UI allows brands to distribute rewards for in-game task completion, showcase call-to-action buttons, display a brand banner or video, and more. This UI is customized to align with your game's UI/UX. 
 
 ### Next...
 We will link the Spaces Engine with your Game Assets.

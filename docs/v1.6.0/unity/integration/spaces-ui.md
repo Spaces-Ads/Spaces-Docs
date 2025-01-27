@@ -21,18 +21,25 @@ You will find these UI prefabs under **```.\Spaces\UI\```**
 
 2. **```SpacesCheckoutUITrigger```** -  Is a UI Button which will be active, when there is an active brand campaign. Users on clicking will see the **```SpacesCheckout```** UI.
 
-    Drag and Attach **```SpacesCheckoutUITrigger.prefab```** in the appropriate location in your UI and game. This is most likely somewhere in your game home or menu page.
+- Drag and Attach **```SpacesCheckoutUITrigger.prefab```** in the appropriate location in your UI and game. This is most likely somewhere in your game home or menu page.
 
-    Resize, **```SpacesCheckoutUITrigger.prefab```**  components according the size that fits your UI.
+- Resize, **```SpacesCheckoutUITrigger.prefab```**  components according the size that fits your UI. 
+    
+- You will need to resize Rect Transforms in **```SpacesCheckoutUITrigger```**, **```SpacesCheckoutUITrigger\SpacesCheckoutUITriggerButton```**, **```SpacesCheckoutUITrigger\SpacesCheckoutUITriggerButton\BackgroundIcon```** and **```SpacesCheckoutUITrigger\SpacesCheckoutUITriggerButton\PopIcon```**
 
 ![alt-textx](@site/static/checkoutUITrigger-1.png)
 ![alt-textx](@site/static/checkoutUITrigger-2.png)
+
+**NOTE - While Integration or working on other aspects of the game you can disable the ```SpacesAnnouncement``` object in the Hierarchy. But You will have to make sure it is turned on again, before you generate the game build**
 
 ## PASS INPUTS BASED ON YOUR GAME
 Head over to **```SpacesPostCampaignPanel```** under **```SpacesPersistent\SpacesCheckout.prefab```**. 
 
 In **```SpacesPostCampaignPanelUI.cs```**, after **```spacesBackgroundPanel```** argument,  you would need pass two arguments one after the other.
-    1. A function that will be triggered after a user fills the Brand lift survey for rewarding them with in-game rewards like extras lives, free coins or gems etc in your game.
+    1. A function that will be triggered after a user responses to a Brand Question for rewarding them with in-game rewards like extras lives, free coins or gems etc in your game. 
+    
+**NOTE: Brands surveys are triggered for one day pre or post the campaign based on brand requirements, it is completely optional for the user, they can just press next to skip and not answer it. The UI/UX will also strongly adhere to your Game**
+
     ```csharp
     spacesEngine.EnablePostCampaignUI(...,spacesBackgroundPanel,()=>GemReward(10),...);
     ``` 
@@ -47,4 +54,4 @@ In case you don't want to offer any such functions, just pass an empty function 
 
 
 
-Similarly do the same in ```SpacesPreCampaignPanel``` under ```SpacesPersistent\SpacesCheckout.prefab```
+Similarly do the same in **```SpacesPreCampaignPanel```** under **```SpacesPersistent\SpacesCheckout.prefab```**

@@ -118,7 +118,7 @@ For example **```Assets/Spaces/Assets/Coin/SpacesCoinMesh.mesh```** into `**``Sp
 Cool, Integration is Done. 
 
 ## Running Campaigns Workflow.
-1. Open the Unity Project in **WebGL** platform
+1. Open the Unity Project.
 2. We will send you a list of files that you need to **Copy and replace** at the **Assets** folder under **Spaces** Directory 
 3. After that in **Addressables Groups** click **Build** and click on **Update a previous Build**
 
