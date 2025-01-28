@@ -48,31 +48,31 @@ export default function Home() {
         <div style={{display:'flex', flexDirection:"row", justifyContent:'center', marginTop:'20px'}}>
           <div style={{display:"flex", alignSelf:"center", width:"90%", alignSelf:'center', justifyContent:"center", overflow:'hidden'}}>
             <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-              <source src={"/videos/Amazon-Demo.mp4"} type="video/mp4" />
+              <source src="https://gamespaces.store/spaces-docs-videos/Amazon-Demo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/OnePlus-Demo.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/OnePlus-Demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/Bingo-Demo.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/Bingo-Demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/Jio-Demo.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/Jio-Demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/Swiggy-Demo-2.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/Swiggy-Demo-2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <video height="390" style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/Swiggy-Demo-1.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/Swiggy-Demo-1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <video height="390"  style={{borderRadius:"10px", marginRight:'10px'}} autoPlay loop muted>
-            <source src={"/videos/SS-Demo.mp4"} type="video/mp4" />
+            <source src="https://gamespaces.store/spaces-docs-videos/SS-Demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

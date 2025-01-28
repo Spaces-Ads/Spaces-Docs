@@ -2,7 +2,6 @@
   "label": "Examples",
   "position": 5,
   "link": {
-    "type": "doc",
-    "id": "v1.6.0/unity/examples/examples"
+    "type": "generated-index"
   }
 }

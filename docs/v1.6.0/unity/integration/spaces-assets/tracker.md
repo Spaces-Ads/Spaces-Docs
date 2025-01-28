@@ -13,6 +13,7 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
 
 2. **Set Up for 2D Assets:**
    - If your asset is a 2D element (such as a UI component or part of a 2D game), make sure to set **`is2D`** to **`true`**.
+   - If your asset is not rendered by any camera and is shown in the screen, on the Overlay spaces, make sure to set **`isOverlay`** to **`true`**.
 
 3. **Collider Settings:**
    - If the GameObject you are attaching the script to does not have any Colliders covering its entire area, set **`addCollider`** to **`true`**. 
@@ -57,6 +58,7 @@ public class SpacesCoinTracker : MonoBehaviour
     public string assetId = SpacesAssets.GetAssetId("Coin");
     private SpacesEngine spacesEngine;
     public bool is2D;
+    public bool isOverlay;
     public bool addCollider;
     public Camera spacesCamera;
     public float nearPlaneValue;
@@ -74,7 +76,7 @@ public class SpacesCoinTracker : MonoBehaviour
     void Update()
     {
         if(spacesCamera!=null && assetId!=null && spacesEngine!=null){
-            spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D);
+            spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D,isOverlay);
         }
     }
 
@@ -111,7 +113,7 @@ spacesEngine.InitializeAsset(gameObject,is2D,addCollider);
 - **Usage:** This method is called only once during the lifecycle of the GameObject to which the Tracker Script is attached.
 
 ```csharp
-spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D);
+spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D,isOverlay);
 ```
 - **Purpose:** Tracks the asset while the GameObject is active.
 - **Usage:** This method is called in every frame when the asset is visible in the game.
@@ -143,6 +145,7 @@ GameObject newObject = Instantiate(prefab); //Your appropriate gameObject
 SpacesTracker tracker = newObject.AddComponent<SpacesTracker>(); 
 tracker.assetId = SpacesAssets.GetAssetId("Coin"); //you need to assign the assetId to the script
 tracker.is2D = true; //you can set appropriate values
+tracker.isOverlay = true; //you can set appropriate values
 tracker.addCollider = true; //you can set appropriate values
 tracker.spacesCamera = Camera.main; //or anyother appropriate Camera      
 tracker.nearPlaneValue = 0.3f; //you can set appropriate values Camera
