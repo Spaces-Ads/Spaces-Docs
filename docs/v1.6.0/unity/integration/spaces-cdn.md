@@ -67,7 +67,7 @@ sidebar_position: 5
 
 ![alt-textx](@site/static/cdn-14.png)
 
-9. Now Double Click on **SpacesGroup** in Addressables Group Window, In **Content Packing & Loading** set **Build Path** to the Path of your primary Catalog Build Path that you are using & **Load Path** to **Spaces Load Path** which you currently set from variables
+9. Now Double Click on **SpacesGroup** in Addressables Group Window. In **Content Packing & Loading** set **Build Path** to the Path of your primary Catalog Build Path, & **Load Path** to **Spaces Load Path** which you currently set from variables. If in **Inspect Top Level Settings** -> **Build Remote Catlog** is off, turn it on and set **Build & Load Paths** to **Remote** and, set the **Build Path** for your catalog appropriately.
 
 ![alt-textx](@site/static/cdn-15.png)
 
@@ -119,7 +119,18 @@ Cool, Integration is Done.
 
 ## Running Campaigns Workflow.
 1. Open the Unity Project.
-2. We will send you a list of files that you need to **Copy and replace** at the **Assets** folder under **Spaces** Directory 
+2. We will send you a list of files that you need to **Copy and replace** in the **Assets** folder under **Spaces** Directory. 
+
+**NOTE: REPLACE ONLY THE ASSET FILES. DO NOT COPY & REPLACE THE META FILES.** 
+
+**Example**
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video22.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+
+
 3. After that in **Addressables Groups** click **Build** and click on **Update a previous Build**
 
 **NOTE: NEVER click on update New Build after the first time integration, as it will need you to generate a new Game Build/APK and update the Game itself**

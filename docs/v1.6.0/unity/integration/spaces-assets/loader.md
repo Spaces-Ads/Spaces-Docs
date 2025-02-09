@@ -72,30 +72,90 @@ if(spacesEngine.IsCampaignActive()){
 5. Before assigning the asset to any of your asset components, you must cast it to the appropriate component type. For example:
 **```meshFilter.mesh = (Mesh)asset;```**.
 
-
-### Custom Addition
-In certain cases, you might programmatically assign/load the asset componets. In that case you will have fetch the asset with the following: 
+**Some Examples For Asset Assignment**
 ```csharp
-using Spaces.Unity.WebGl.Sdk.V2; //use this library to get access to SpacesEngine class
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMesh");
+    MeshFilter component = GetComponent<MeshFilter>();
+    if(isValid && component!=null)
+    {
+        component.mesh = (Mesh)asset;
+    }
+}
+```
 
-SpacesEngine spacesEngine;
-spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
-var (asset, isValid) = spacesEngine.FetchAsset("asset-component-name");
-``` 
-and then assign it wherever you want programmatically.
+```csharp
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCharacterMesh");
+    SkinnedMeshRenderer component = GetComponent<SkinnedMeshRenderer>();
+    if(isValid && component!=null)
+    {
+        component.sharedMesh = (Mesh)asset;
+    }
+}
+```
 
-Just make sure the following:
-1. You typecast the component to its type, before assigning the asset.
+```csharp
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCharacterMat");
+    MeshRenderer component = GetComponent<MeshRenderer>();
+    if(isValid && component!=null)
+    {
+        component.material = (Material)asset;
+    }
+}
+```
+
+```csharp
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatLight");
+    MeshRenderer component = GetComponent<MeshRenderer>();
+    if(isValid && component!=null)
+    {
+        component.materials[0] = (Material)asset;
+    }
+}
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatDark");
+    MeshRenderer component = GetComponent<MeshRenderer>();
+    if(isValid && component!=null)
+    {
+        component.materials[1] = (Material)asset;
+    }
+}
+```
+
+```csharp
+if(spacesEngine.IsCampaignActive()){
+    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatMain");
+    SpriteRenderer component = GetComponent<SpriteRenderer>();
+    if(isValid && component!=null)
+    {
+        component.sprite = (Sprite)asset;
+    }
+}
+```
+
+
+### Addition by Code & Modifications
+In certain cases, you might programmatically assign/load the asset componets. In that case you will have to fetch the asset and then assign it wherever you want programmatically.
+
+Make sure the following:
+1. You typecast the component to its type and assign the asset based on the component.
 2. Entire spaces asset loading logic, is enclosed within ```if(spacesEngine.IsCampaignActive())```
 
 **NOTE - Ensure that Spaces asset is assigned before the asset Gameobject is set active**
 
-**Example**
+**Template**
 ```csharp
+using Spaces.Unity.WebGl.Sdk.V2; //use this library to get access to SpacesEngine class
+
+//--- at the appropriate location in your code
+SpacesEngine spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
 if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMesh");
+    var (asset, isValid) = spacesEngine.FetchAsset("asset-component-name");
     if(isValid){
-        //asign it with (Mesh)asset
+        //asign it with (Mesh)asset or (Material)asset based on your Asset type
     }
     else{
         //your default assignment
@@ -106,4 +166,8 @@ else{
 }
 
 ```
+
 **Trivia**: You can find all the **```Components```** (asset-component-name) in **```\Spaces\Components.txt```**
+
+
+

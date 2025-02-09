@@ -24,7 +24,7 @@ sidebar_position: 5
 
 
 
-9. Now Double Click on **SpacesGroup** in Addressables Group Window, In **Content Packing & Loading** set **Build Path** to the Path of your primary Catalog Build Path that you are using & **Load Path** to **Spaces Load Path** which you currently set from variables
+9. Now Double Click on **SpacesGroup** in Addressables Group Window, In **Content Packing & Loading** set **Build Path** to the Path of your primary Catalog Build Path, & **Load Path** to **Spaces Load Path** which you currently set from variables. If in **Inspect Top Level Settings** -> **Build Remote Catlog** is off, turn it on and set **Build & Load Paths** to **Remote** and, set the **Build Path** for your catalog appropriately.
 10. Turn on **Use Asset Bundle Cache**
 11. Set Cache Behaviour into **Clear When When New Version Loaded**
 
@@ -39,6 +39,8 @@ Do not alter the Build Path, set the Load Path to **Spaces Load Path**.
     SpacesController.SetDefaultHostUrl("your-previous-default-addressables-group-load-path");
     await SpacesController.Load();
 ```
+
+
 
 
 ## CDN Asset-Linking

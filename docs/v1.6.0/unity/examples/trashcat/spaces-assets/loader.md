@@ -52,7 +52,6 @@ Typically, a GameObject will render a specific set of asset components, such as:
 3. **Modify the Scripts as Needed:**
     - Depending on how you plan to assign the asset, you may need to modify the scripts to fit your specific requirements.
 
-
 Your Loader script will look similar to this. You can access the asset by using the line ```(<AssetType>)asset;```
 ```csharp
 public class SpacesBridgeLoader : MonoBehaviour
@@ -106,29 +105,25 @@ if(spacesEngine.IsCampaignActive()){
 **```meshFilter.mesh = (Mesh)asset;```**.
 
 
-### Custom Addition
-In certain cases, you might programmatically assign/load the asset componets. In that case you will have fetch the asset with the following: 
-```csharp
-using Spaces.Unity.WebGl.Sdk.V2; //use this library to get access to SpacesEngine class
+### Addition by Code & Modifications
+In certain cases, you might programmatically assign/load the asset componets. In that case you will have to fetch the asset and then assign it wherever you want programmatically.
 
-SpacesEngine spacesEngine;
-spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
-var (asset, isValid) = spacesEngine.FetchAsset("asset-component-name");
-``` 
-and then assign it wherever you want programmatically.
-
-Just make sure the following:
-1. You typecast the component to its type, before assigning the asset.
+Make sure the following:
+1. You typecast the component to its type and assign the asset based on the component.
 2. Entire spaces asset loading logic, is enclosed within ```if(spacesEngine.IsCampaignActive())```
 
 **NOTE - Ensure that Spaces asset is assigned before the asset Gameobject is set active**
 
-**Example**
+**Template**
 ```csharp
+using Spaces.Unity.WebGl.Sdk.V2; //use this library to get access to SpacesEngine class
+
+//--- at the appropriate location in your code
+SpacesEngine spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
 if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMesh");
+    var (asset, isValid) = spacesEngine.FetchAsset("asset-component-name");
     if(isValid){
-        //asign it with (Mesh)asset
+        //asign it with (Mesh)asset or (Material)asset based on your Asset type
     }
     else{
         //your default assignment
@@ -139,4 +134,7 @@ else{
 }
 
 ```
-**Trivia**: You can find all the **```Components```** (asset-component-name) in **```\Spaces\Components.txt```**
+
+
+
+

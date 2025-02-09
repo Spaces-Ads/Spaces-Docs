@@ -46,15 +46,15 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
 
 1. **Attach the Tracker Script:**
    - Drag the appropriate Tracker script from the following directory **```./Spaces/Scripts/Assets/Trackers```**
-   - Attach it to the relevant GameObject.
+   - Attach it to the relevant GameObject of the Asset. The rule of thumb is to attach to the gameobject that consists of a component that renders the asset or with colliders present i.e Mesh Renderer, Skinned Mesh Renderer, Sprite Renderer, Image, any type of Collider etc.
 
-2. **Set Up for 2D & Overlay Assets:**
+2. **Set Up for 2D Assets:**
    - If your asset is a 2D element (such as a UI component or part of a 2D game), make sure to set **`is2D`** to **`true`**.
    - If your asset is not rendered by any camera and is shown in the screen, on the Overlay spaces, make sure to set **`isOverlay`** to **`true`**.
 
 3. **Collider Settings:**
-   - If the GameObject you are attaching the script to does not have any Colliders covering its entire area, set **`addCollider`** to **`true`**. 
-   - In most cases it won't cause an issue, as the collider is present within the asset without being exposed as bounding box kind of a collider covering the asset. In some rare cases, if adding a collider affects gameplay, you can turn it **```off```**.  
+   - If the GameObject you are attaching the script to does not have any Colliders present, set **`addCollider`** to **`true`**. 
+   - In most cases this won't cause an issue, as sapces adds collider within the asset without being exposed as 'bounding box kind of a collider' covering the asset. In some rare cases, if adding a collider affects gameplay, you can turn it **```off```**.  
 
 4. **Pass the Camera**
     - Pass the Camera Object which is responsible for showing the asset in the scene.
@@ -63,7 +63,7 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
     - Pass the Near & Far Clipping Plane Values that you use in your Camera.
 
 
-6. **Alternative Method to Pass Parameters**
+**Alternative Method to Pass Parameters**
     - You can also pass the paramters in the **```Start()```** function of the Tracker Script.
     ```csharp
     public class SpacesCoinTracker : MonoBehaviour
@@ -72,6 +72,9 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
         void Start()
         {
             spacesCamera = Camera.main;
+            is2D = false;
+            addCollider = true;
+            isOverlay = false;
             nearPlaneValue = 0.5f;
             farPlaneValue = 50f; 
             spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
@@ -79,6 +82,8 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
         }
     }
     ```
+
+
 
 
 Your Tracker script will look similar to this
@@ -160,7 +165,10 @@ spacesEngine.AssetDisabled(assetId);
 - **Usage:** This method is called whenever the GameObject or asset becomes invisible or inactive in the game.
 
 
-### Custom Addition
+
+
+
+### Addition by Code & Modifications
 In some scenarios, you might have to do somes changes to the script and assign values in runtime etc..
 
 1. You need to ensure that the respective asset tracker script, is attached to the asset Gameobject. You can either do it via editor or in runtime depending on how you handle it.
@@ -168,24 +176,30 @@ In some scenarios, you might have to do somes changes to the script and assign v
 2. If you are loading assets in runtime dynamically, ensure you set the **```assetId```** in the script. You can fetch assetId by passing the name in this function **```SpacesAssets.GetAssetId("your-asset-name")```** in runtime.
 
 **Example**
-You can set the asset for the below in runtime by accessing the **```GetAssetId()```** function in the asset gameobject and then by running **```tracker.assetId = SpacesAssets.GetAssetId("Coin")```**. 
+Use the snippet below to attach the Spaces Tracker to a gameObject by code in runtime. You can set the assetId by accessing the **```GetAssetId()```** function in the asset gameobject and then by running **```tracker.assetId = SpacesAssets.GetAssetId("Coin")```**.
 
 ```csharp
-GameObject newObject = Instantiate(prefab); //Your appropriate gameObject
-SpacesTracker tracker = newObject.AddComponent<SpacesTracker>(); 
-tracker.assetId = SpacesAssets.GetAssetId("Coin"); //you need to assign the assetId to the script
-tracker.is2D = true; //you can set appropriate values
+SpacesEngine assetSpacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
+bool assetIs2D= true;  //you can set appropriate values
+bool assetAddCollider = true; //you can set appropriate values
+assetSpacesEngine.InitializeAsset(gameObject,assetIs2D,assetAddCollider);
+SpacesTracker tracker = gameObject.AddComponent<SpacesTracker>(); 
+tracker.spacesEngine = assetSpacesEngine;
+tracker.assetId = SpacesAssets.GetAssetId("Coin"); //you need to assign the appropriate assetId to the script
+tracker.is2D = assetIs2D;
 tracker.isOverlay = true; //you can set appropriate values
-tracker.addCollider = true; //you can set appropriate values
+tracker.addCollider = assetAddCollider; 
 tracker.spacesCamera = Camera.main; //or anyother appropriate Camera      
 tracker.nearPlaneValue = 0.3f; //you can set appropriate values Camera
 tracker.farPlaneValue = 1000f; //you can set appropriate values matching the Camera
 ```
+The Snippet uses the base **```SpacesTracker.cs```** code, you can make multiple copies of the this code, edit and use it, if you are adding any custom visibility logic as mentioned in the next point. Just makesure you can change the class name and file name of your copies. You can find SpacesTracker.cs in **```./Spaces/Scripts/Assets/Trackers```**
+
 
 3. If you control the visibility of an asset without deactivating or destroying its associated GameObject. Make sure you add that condition in the **```Update()```** of the Tracker script. Ensure that **```spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D);```** is called on every frame only when the Gameobject is visible/active/rendered.
 
 **Example**
-Just for an example, Lets say you scale the asset up to show it and scale it down to zero to hide it, while keeping the GameObject active. In that case do something like the follwoing, for Spaces Engine to account for it. 
+Lets say you scale the asset up to show it and scale it down to zero to hide it, while keeping the GameObject active. In that case do something like the following, for Spaces Engine to account for it. 
 
 ```csharp
 bool CheckScaled(RectTransform rectTransform){
@@ -212,7 +226,7 @@ bool CheckScaled(RectTransform rectTransform){
 void Update(){
     if(spacesCamera!=null && assetId!=null && spacesEngine!=null && CheckScaled(GetComponent<Image>().GetComponent<RectTransform>())) //you can add any condition based on your requirements.
     {
-        spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D,isOverlay)
+        spacesEngine.AssetUpdate(gameObject,spacesCamera,assetId,nearPlaneValue,farPlaneValue,is2D)
     }
 }
 ```

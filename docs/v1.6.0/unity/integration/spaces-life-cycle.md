@@ -11,7 +11,7 @@ The Spaces Ad-Engine lifecycle states that must align with your game's lifecycle
 Let's start with the very first scene of your game, the Loading Scene or Splash Screen. 
 
 ### If Your Game Already Has a Loading Scene
-1. Drag and Drop **```SpacesSplashScreen```** prefab at the bottom of the hierarchy in your Loading Scene. You can find it at **```\Spaces\UI```**
+1. Drag and Drop **```SpacesSplashScreen```** prefab at the bottom of the hierarchy in your Loading Scene. You can find it at **```\Spaces\UI```** . You can modfy the loading image with the one appropriate for your game inside the ```SpacesSplashScreen``` prefab at ```SpacesSplashScreen\LoadingScreen\Image```.
 2. Drag and Drop **```SpacesLoader```** prefab at the bottom of the hierarchy in your Loading Scene. You can find it at **```\Spaces\UI```**
 
     ![alt-textx](@site/static/lifeCycle-Load1.png)
@@ -86,6 +86,15 @@ Let's start with the very first scene of your game, the Loading Scene or Splash 
     ```
 
     **Trivia: Throughout the integration you will be interacting with ```SpacesController.cs``` in ```\Spaces\Scripts```**
+
+8. **IN ANDROID:** Run **```SpacesController.SetUserParams();```** before you call **```await SpacesController.Load();```** and pass the appropriate user parameters and keywords. This will help us in A/B testing and targetting campaigns for users. If you do not want to pass certain parameters, just pass the default value as present in ```SpacesLoader.cs```.
+
+**```SpacesController.SetUserParams(string email, string name, double locationLat, double locationLong, int age, string gender, string keyword1, string keyword2, string keyword3, string keyword4, string keyword5);```**.
+
+```csharp
+    SpacesController.SetUserParams("random@email.xyz","random-name",0.0f,0.0f,25,"MALE","PROD-GROUP","A-GROUP","NONE","NONE","NONE"); //example function call
+    await SpacesController.Load();
+```
 
 
 ### If Your Game Does Not Have a Loading Scene

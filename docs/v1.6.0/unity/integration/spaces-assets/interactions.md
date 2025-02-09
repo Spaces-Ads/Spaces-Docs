@@ -31,8 +31,9 @@ spacesEngine.AssetUpdateInteraction(SpacesAssets.GetAssetId("MatchWonTracker"));
 spacesEngine.AssetUpdateInteraction(SpacesAssets.GetAssetId("Candy")); //can be used to that a candy has been collected or bursted.
 ```
 
-**Best Practise** is to add these as static functions in ***```SpacesController```*** and access it universally across your game and scenes. You can find **```SpacesController.cs```** in **```\Spaces\Scripts```**
+You will find all your game related Interaction endpoints at the end of ***```SpacesController```***. You can access it universally across your game and scenes. You can find **```SpacesController.cs```** in **```\Spaces\Scripts```**
 
+**Example**
 ```csharp
 public static void MatchWon(){
     spacesEngine.AssetUpdateInteraction(SpacesAssets.GetAssetId("MatchWonTracker"));
@@ -53,6 +54,9 @@ SpacesController.MatchWon();
 SpacesController.CoinCollected(count);
 SpacesController.PlayerSurvived(time);
 ```
+
+### NOTE: 
+Make sure you call any Interactions endpoint before you call **```SpacesController.UpdateGameSession();```** function
 
 ### Next...
 Let's move to Adding the Spaces UI to your game.
