@@ -71,6 +71,7 @@ Each asset can be either a Prefab or a GameObject that displays or renders the a
         // Start is called before the first frame update
         void Start()
         {
+            assetId = SpacesAssets.GetAssetId("Coin");
             spacesCamera = Camera.main;
             is2D = false;
             addCollider = true;
@@ -93,7 +94,7 @@ using Spaces.Unity.WebGl.Sdk.V2;
 
 public class SpacesCoinTracker : MonoBehaviour
 {
-    public string assetId = SpacesAssets.GetAssetId("Coin");
+    public string assetId;
     private SpacesEngine spacesEngine;
     public bool is2D;
     public bool isOverlay;
@@ -106,6 +107,7 @@ public class SpacesCoinTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        assetId = SpacesAssets.GetAssetId("Coin");
         spacesEngine = new SpacesEngine(SpacesController.GetAPIKey(),SpacesController.env);
         spacesEngine.InitializeAsset(gameObject,is2D,addCollider);
     }
