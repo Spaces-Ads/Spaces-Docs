@@ -4,6 +4,42 @@ sidebar_position: 3
 
 # Loader
 
+## FishBone
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video11.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+## Sardines
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video12.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+## Magnet
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video13.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+## Obstacle Bin
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video14.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+## Obstacle Wheely Bin
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video15.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+## Character
+<video controls width="800">
+  <source src="https://gamespaces.store/spaces-docs-videos/TrashCat-Doc-Demo-Video16.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
 ### Standard Drag-Drop
 Each asset may consist of multiple GameObjects, each responsible for rendering different components of the asset.
 Typically, a GameObject will render a specific set of asset components, such as: like **```Meshes```**, **```Materials```**, **```Sprites```** etc.
@@ -15,10 +51,6 @@ Typically, a GameObject will render a specific set of asset components, such as:
     You will have to modify the script based on where you will be assigning the asset.
 3. **Modify the Scripts as Needed:**
     - Depending on how you plan to assign the asset, you may need to modify the scripts to fit your specific requirements.
-
-![alt-textx](@site/static/assetloader-1.png)
-![alt-textx](@site/static/assetloader-2.png)
-
 
 Your Loader script will look similar to this. You can access the asset by using the line ```(<AssetType>)asset;```
 ```csharp
@@ -72,74 +104,6 @@ if(spacesEngine.IsCampaignActive()){
 5. Before assigning the asset to any of your asset components, you must cast it to the appropriate component type. For example:
 **```meshFilter.mesh = (Mesh)asset;```**.
 
-**Some Examples For Asset Assignment**
-```csharp
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMesh");
-    MeshFilter component = GetComponent<MeshFilter>();
-    if(isValid && component!=null)
-    {
-        component.mesh = (Mesh)asset;
-    }
-}
-```
-
-```csharp
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCharacterMesh");
-    SkinnedMeshRenderer component = GetComponent<SkinnedMeshRenderer>();
-    if(isValid && component!=null)
-    {
-        component.sharedMesh = (Mesh)asset;
-    }
-}
-```
-
-```csharp
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCharacterMat");
-    MeshRenderer component = GetComponent<MeshRenderer>();
-    if(isValid && component!=null)
-    {
-        component.material = (Material)asset;
-    }
-}
-```
-
-```csharp
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatLight");
-    MeshRenderer component = GetComponent<MeshRenderer>();
-    if(isValid && component!=null)
-    {
-        Material[] materials = component.materials;
-        materials[0] = (Material)asset;
-        component.materials = materials;
-    }
-}
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatDark");
-    MeshRenderer component = GetComponent<MeshRenderer>();
-    if(isValid && component!=null)
-    {
-        Material[] materials = component.materials;
-        materials[1] = (Material)asset;
-        component.materials = materials;
-    }
-}
-```
-
-```csharp
-if(spacesEngine.IsCampaignActive()){
-    var (asset, isValid) = spacesEngine.FetchAsset("SpacesCoinMatMain");
-    SpriteRenderer component = GetComponent<SpriteRenderer>();
-    if(isValid && component!=null)
-    {
-        component.sprite = (Sprite)asset;
-    }
-}
-```
-
 
 ### Addition by Code & Modifications
 In certain cases, you might programmatically assign/load the asset componets. In that case you will have to fetch the asset and then assign it wherever you want programmatically.
@@ -171,7 +135,6 @@ else{
 
 ```
 
-**Trivia**: You can find all the **```Components```** (asset-component-name) in **```\Spaces\Components.txt```**
 
 
 
